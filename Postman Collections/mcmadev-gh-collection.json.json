@@ -1,0 +1,633 @@
+{
+  "info": {
+    "_postman_id": "f3e09ea3-4a7c-467f-8e71-51330e5ab1db",
+    "name": "FirstDraft_Prod",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "FirstDraft_Prod_TokenReset_Env",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e3651b91-a649-4904-a20b-8d821620d186",
+            "exec": [
+              "var data = JSON.parse(responseBody);\r",
+              "\r",
+              "if (data.access_token) {\r",
+              "  tests[\"Body has accessToken\"] = true; \r",
+              "  pm.environment.set(\"dne_etAccessToken\", data.access_token);\r",
+              "}\r",
+              "else {\r",
+              "  tests[\"Body has access_token\"] = false;\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "14089b09-b46e-47ec-9c4f-840dd78f03e3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"grant_type\": \"client_credentials\",\n\"client_id\": \"{{et_clientId}}\",\n\"client_secret\": \"{{et_clientSecret}}\",\n\"account_id\": \"{{et_mid}}\"\n}",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": "https://{{et_subdomain}}.auth.marketingcloudapis.com/v2/token"
+      },
+      "response": []
+    },
+    {
+      "name": "FirstDraft_SOAPSetup",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a3ead668-8938-4dbf-ab7e-59d987d81906",
+            "exec": [
+              "var data = JSON.parse(responseBody);\r",
+              "\r",
+              "if (data.access_token) {\r",
+              "  tests[\"Body has accessToken\"] = true; \r",
+              "  pm.environment.set(\"dne_etAccessToken\", data.access_token);\r",
+              "}\r",
+              "else {\r",
+              "  tests[\"Body has access_token\"] = false;\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "4433570e-7bb9-40e0-983b-5beff289ddde",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"grant_type\": \"client_credentials\",\n\"client_id\": \"{{et_clientId}}\",\n\"client_secret\": \"{{et_clientSecret}}\",\n\"account_id\": \"{{et_mid}}\"\n}",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": "https://{{et_subdomain}}.auth.marketingcloudapis.com/v2/token"
+      },
+      "response": []
+    },
+    {
+      "name": "FirstDraft_SenderProfile",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "1038bec7-b684-4164-afca-ff2d5ad8188a",
+            "exec": [
+              "var data = JSON.parse(responseBody);\r",
+              "\r",
+              "if (data.access_token) {\r",
+              "  tests[\"Body has accessToken\"] = true; \r",
+              "  pm.environment.set(\"dne_etAccessToken\", data.access_token);\r",
+              "}\r",
+              "else {\r",
+              "  tests[\"Body has access_token\"] = false;\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "43640c6d-7251-4361-a09a-6fbfcc81239f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:a=\"http://schemas.xmlsoap.org/ws/2004/08/addressing\" xmlns:u=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n    <s:Header>\n        <a:Action s:mustUnderstand=\"1\">Retrieve</a:Action>\n        <a:To s:mustUnderstand=\"1\">https://{{et_subdomain}}.soap.marketingcloudapis.com/Service.asmx</a:To>\n        <fueloauth xmlns=\"http://exacttarget.com\">{{dne_etAccessToken}}</fueloauth>\n    </s:Header>\n    <s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <RetrieveRequestMsg xmlns=\"http://exacttarget.com/wsdl/partnerAPI\">\n         <Options>\n        </Options>\n         <RetrieveRequest>\n            <ObjectType>SenderProfile</ObjectType>\n            <Properties>ObjectID</Properties>\n            <Properties>CustomerKey</Properties>\n            <Properties>Name</Properties>\n            <Properties>SenderProfile.CustomerKey</Properties>\n            <Filter xsi:type=\"ns1:SimpleFilterPart\" xmlns:ns1=\"http://exacttarget.com/wsdl/partnerAPI\">\n               <Property>CustomerKey</Property>\n               <SimpleOperator>equals</SimpleOperator>\n               <Value>7457</Value>\n            </Filter>\n         </RetrieveRequest>\n      </RetrieveRequestMsg>\n    </s:Body>\n</s:Envelope>",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": "https://{{et_subdomain}}.soap.marketingcloudapis.com/Service.asmx"
+      },
+      "response": []
+    },
+    {
+      "name": "FirstDraft_EmailSendDefinition",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "1afef14d-74c8-4ce2-bdb6-abb0d975ca73",
+            "exec": [
+              "var data = JSON.parse(responseBody);\r",
+              "\r",
+              "if (data.access_token) {\r",
+              "  tests[\"Body has accessToken\"] = true; \r",
+              "  pm.environment.set(\"dne_etAccessToken\", data.access_token);\r",
+              "}\r",
+              "else {\r",
+              "  tests[\"Body has access_token\"] = false;\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "12529a75-ac9e-48a1-8891-f12d8e291cc3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:a=\"http://schemas.xmlsoap.org/ws/2004/08/addressing\" xmlns:u=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n    <s:Header>\n        <a:Action s:mustUnderstand=\"1\">Retrieve</a:Action>\n        <a:To s:mustUnderstand=\"1\">https://{{et_subdomain}}.soap.marketingcloudapis.com/Service.asmx</a:To>\n        <fueloauth xmlns=\"http://exacttarget.com\">{{dne_etAccessToken}}</fueloauth>\n    </s:Header>\n    <s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <RetrieveRequestMsg xmlns=\"http://exacttarget.com/wsdl/partnerAPI\">\n         <Options>\n        </Options>\n         <RetrieveRequest>\n            <ObjectType>SenderProfile</ObjectType>\n            <Properties>ObjectID</Properties>\n            <Properties>CustomerKey</Properties>\n            <Properties>Name</Properties>\n            <Properties>SenderProfile.CustomerKey</Properties>\n            <Filter xsi:type=\"ns1:SimpleFilterPart\" xmlns:ns1=\"http://exacttarget.com/wsdl/partnerAPI\">\n               <Property>CustomerKey</Property>\n               <SimpleOperator>equals</SimpleOperator>\n               <Value>7457</Value>\n            </Filter>\n         </RetrieveRequest>\n      </RetrieveRequestMsg>\n    </s:Body>\n</s:Envelope>",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": "https://{{et_subdomain}}.soap.marketingcloudapis.com/Service.asmx"
+      },
+      "response": []
+    },
+    {
+      "name": "FirstDraft_Describe",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "4c89ef4b-0f7e-428b-b9df-8e949b7a4975",
+            "exec": [
+              "var data = JSON.parse(responseBody);\r",
+              "\r",
+              "if (data.access_token) {\r",
+              "  tests[\"Body has accessToken\"] = true; \r",
+              "  pm.environment.set(\"dne_etAccessToken\", data.access_token);\r",
+              "}\r",
+              "else {\r",
+              "  tests[\"Body has access_token\"] = false;\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "fa783c21-b567-48b0-a577-8ccda69fdbff",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"grant_type\": \"client_credentials\",\n\"client_id\": \"{{et_clientId}}\",\n\"client_secret\": \"{{et_clientSecret}}\",\n\"account_id\": \"{{et_mid}}\"\n}",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": "https://{{et_subdomain}}.auth.marketingcloudapis.com/v2/token"
+      },
+      "response": []
+    },
+    {
+      "name": "FirstDraft_Airship_POST /custom-events",
+      "_postman_id": "a7b84cc2-9335-4bc7-939a-c0d8fc19cf12",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/vnd.urbanairship+json; version=3",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer MTo5eFgwQ2JpZFQ4R1hVUjdSWjIyQjNBOkpsbUNYNVJEcHl4R2NxRFdIYVhrNzZGaVk4VldDQmYzUGIybnZOY1M0Y2s",
+            "type": "text"
+          },
+          {
+            "key": "X-UA-Appkey",
+            "value": "9xX0CbidT8GXUR7RZ22B3A",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  {\r\n    \"user\": {\r\n      \"named_user_id\": \"107551239\"\r\n    },\r\n    \"body\": {\r\n      \"name\": \"pega_marketing_generic_event\",\r\n      \"properties\": {\r\n        \"message-body\": \"Starting today you again have access to all your favorite in-club amenities\",\r\n        \"cta-weblink\": \"https://my.lifetime.life/clubs.go/features.html\"\r\n      }\r\n    }\r\n  }\r\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "https://go.urbanairship.com/api/custom-events"
+      },
+      "response": []
+    },
+    {
+      "name": "FirstDraft_REST_Query",
+      "_postman_id": "9544c8eb-f2e5-4bb2-9865-3954d02fe3ce",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IjQiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiI2bDdBc2NSeVMwVXJLdjlIVmtZbFdVcGkiLCJjbGllbnRfaWQiOiJxdmhiZWd2MTIzcDhyOW5lNWt1czQ2bjAiLCJlaWQiOjYxODUyMTQsInN0YWNrX2tleSI6IlM2IiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.BrGGf5ctNEjtHydC9qFZ-Md_BScwoZ8BYgacR364mqo.LgztibpozjioLuh06WKEyNYSJu7O7CLrNmm6rMGrn1qTqD_-DXUBJ9o5JWO109y6tuRbe9RX_UHqAlJQrSJ3_I6O4UEihrphEf8Ulce_NWKMAPXcTySFO6r-FAsisHm3wijUJ_KblzAp-mrVQ2h6Ks3ww60tmq1qCKWWJHKvPmCFXNOf6w5v8Wj"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "AccountID",
+            "value": "6194782",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \"query\":\r\n    {\r\n        \"leftOperand\":\r\n        {\r\n            \"property\":\"content\",\r\n            \"simpleOperator\":\"contains\",\r\n            \"value\": \"LT BUCK$\"\r\n        },\r\n        \"logicalOperator\":\"AND\",\r\n        \"rightOperand\":\r\n        {\r\n            \"property\":\"MemberID\",\r\n            \"simpleOperator\":\"equal\",\r\n            \"value\": 6194782\r\n        }\r\n\r\n        \r\n    },\r\n     \"sort\":\r\n    [\r\n        { \"property\":\"id\", \"direction\":\"ASC\" }\r\n    ],\r\n \r\n    \"fields\":\r\n    [\r\n        \"id\",\r\n       \"name\",\r\n       \"category\",\r\n       \"CustomerKey\",\r\n       \"MemberID\"\r\n    ]\r\n}",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": "https://{{et_subdomain}}.rest.marketingcloudapis.com/asset/v1/content/assets/query"
+      },
+      "response": []
+    },
+    {
+      "name": "FirstDraft_REST_AssetId",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "fadce724-4c32-4be1-8d0b-688a42285ebe",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "12e6d166-818a-48f7-a0d5-bb4d4f9ce8fe",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IjQiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiI2bVZHQmhmYVhTeW14YnExSkRaMWptQW8iLCJjbGllbnRfaWQiOiJxdmhiZWd2MTIzcDhyOW5lNWt1czQ2bjAiLCJlaWQiOjYxODUyMTQsInN0YWNrX2tleSI6IlM2IiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.AigJ7UFGz8hVcBbrOM6xJ_qUOm46iFROHdotW_3vJ0k.5b1tasiUn7l1VWe8I8CiTeF1TZeson-QI0Ah3mbZIT5dWDYu4myH3w0fob0hftnzW1iWcCaXKkM93UaIc8BTmzQoX8uJdGt07m6JjADCbqVmLYMNQrAYxS3z8AUm_2xMzAaI-R8OaefsIoG4DZ1De26gIUU8RVmDD5meloNmTe8CPcD6OnWGWMO"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "AccountID",
+            "value": "6194782",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "pageSize",
+            "value": "10",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \"query\":\r\n    {\r\n    },\r\n     \"sort\":\r\n    [\r\n        { \"property\":\"id\", \"direction\":\"ASC\" }\r\n    ],\r\n    \"page\":\r\n    {\r\n        \"page\":1,\r\n        \"pageSize\":500\r\n    }, \r\n    \"fields\":\r\n    [\r\n        \"id\",\r\n       \"name\",\r\n       \"CustomerKey\",\r\n       \"MemberID\",\r\n       \"category\"\r\n    ]\r\n}",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": {
+          "raw": "https://mchl2n7gw73h4822jd4c7f087fpy.rest.marketingcloudapis.com/asset/v1/content/assets/184151",
+          "protocol": "https",
+          "host": [
+            "mchl2n7gw73h4822jd4c7f087fpy",
+            "rest",
+            "marketingcloudapis",
+            "com"
+          ],
+          "path": [
+            "asset",
+            "v1",
+            "content",
+            "assets",
+            "184151"
+          ],
+          "query": [
+            {
+              "key": "$pageSize",
+              "value": "26",
+              "disabled": true
+            },
+            {
+              "key": "$page",
+              "value": "5",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "POST Category"
+      },
+      "response": []
+    },
+    {
+      "name": "FirstDraft_REST_Filter",
+      "_postman_id": "8966c075-7020-4a94-bba7-3476d23e9a37",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{dne_etAccessToken}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://{{et_subdomain}}.rest.marketingcloudapis.com/asset/v1/content/assets/?$fields=id,customerKey,name,memberID&$filter=Content%20eq%20'LT%20BUCK$'",
+          "protocol": "https",
+          "host": [
+            "{{et_subdomain}}",
+            "rest",
+            "marketingcloudapis",
+            "com"
+          ],
+          "path": [
+            "asset",
+            "v1",
+            "content",
+            "assets",
+            ""
+          ],
+          "query": [
+            {
+              "key": "$fields",
+              "value": "id,customerKey,name,memberID"
+            },
+            {
+              "key": "$filter",
+              "value": "Content%20eq%20'LT%20BUCK$'"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "539cdba6-ee64-4d1f-8739-76b12d761cbe",
+          "name": "Retrieve Automation",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "text/xml"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:a=\"http://schemas.xmlsoap.org/ws/2004/08/addressing\" xmlns:u=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n    <s:Header>\n        <a:Action s:mustUnderstand=\"1\">Retrieve</a:Action>\n        <a:To s:mustUnderstand=\"1\">https://{{et_subdomain}}.soap.marketingcloudapis.com/Service.asmx</a:To>\n        <fueloauth xmlns=\"http://exacttarget.com\">{{dne_etAccessToken}}</fueloauth>\n    </s:Header>\n    <s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n        <RetrieveRequestMsg xmlns=\"http://exacttarget.com/wsdl/partnerAPI\">\n            <RetrieveRequest>\n                <ObjectType>Automation</ObjectType>\n                <Properties>Name</Properties>\n                <Properties>Description</Properties>\n                <Properties>CustomerKey</Properties>\n                <Properties>IsActive</Properties>\n                <Properties>ScheduledTime</Properties>\n                <Properties>Status</Properties>\n                <Filter xsi:type=\"SimpleFilterPart\">\n                    <Property>CustomerKey</Property>\n                    <SimpleOperator>equals</SimpleOperator>\n                    <Value>DataViews_Automation</Value>\n                </Filter>\n            </RetrieveRequest>\n        </RetrieveRequestMsg>\n    </s:Body>\n</s:Envelope>"
+            },
+            "url": "https://{{et_subdomain}}.soap.marketingcloudapis.com/Service.asmx"
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "xml",
+          "header": [
+            {
+              "key": "Cache-Control",
+              "value": "private, max-age=0,no-store"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1521"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/soap+xml; charset=utf-8"
+            },
+            {
+              "key": "Server",
+              "value": "Microsoft-IIS/7.5"
+            },
+            {
+              "key": "X-AspNet-Version",
+              "value": "4.0.30319"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "ASP.NET"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=7776000; includeSubDomains"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "1; mode=block"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 17 Jul 2019 20:28:05 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "responseTime": null,
+          "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:wsa=\"http://schemas.xmlsoap.org/ws/2004/08/addressing\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n    <env:Header xmlns:env=\"http://www.w3.org/2003/05/soap-envelope\">\n        <wsa:Action>RetrieveResponse</wsa:Action>\n        <wsa:MessageID>urn:uuid:69ddba3e-488d-4b57-9f48-720a4b3cecae</wsa:MessageID>\n        <wsa:RelatesTo>urn:uuid:3668226a-e2d4-497b-a47e-c11fb156e3e3</wsa:RelatesTo>\n        <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>\n        <wsse:Security>\n            <wsu:Timestamp wsu:Id=\"Timestamp-f96dee31-20ee-4dc8-9a82-7bd8477d11e4\">\n                <wsu:Created>2019-07-17T20:28:05Z</wsu:Created>\n                <wsu:Expires>2019-07-17T20:33:05Z</wsu:Expires>\n            </wsu:Timestamp>\n        </wsse:Security>\n    </env:Header>\n    <soap:Body>\n        <RetrieveResponseMsg xmlns=\"http://exacttarget.com/wsdl/partnerAPI\">\n            <OverallStatus>OK</OverallStatus>\n            <RequestID>d509f082-0f7a-4c9e-8798-410bce7ed552</RequestID>\n            <Results xsi:type=\"Automation\">\n                <PartnerKey xsi:nil=\"true\" />\n                <ObjectID xsi:nil=\"true\" />\n                <CustomerKey>DataViews_Automation</CustomerKey>\n                <Name>System Data Views</Name>\n                <Description />\n                <IsActive>true</IsActive>\n                <Status>6</Status>\n                <ScheduledTime>2019-07-17T17:53:00</ScheduledTime>\n            </Results>\n        </RetrieveResponseMsg>\n    </soap:Body>\n</soap:Envelope>"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "89f2350d-645a-4e0f-ab2f-2e39693bc1be",
+        "type": "text/javascript",
+        "exec": [
+          "/* Begin Usage Tracking */",
+          "pm.sendRequest('www.google-analytics.com/collect?v=1&tid=UA-114173005-2&cid=1&t=pageview&dh=mcexperts.ninja&dp=/projects/postman/collection/run&dt=PostmanEnhancedCollectionRun');",
+          "/* End Usage Tracking */",
+          "",
+          "/* Begin Token Refresh Logic */",
+          "const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+          "",
+          "const tokenRefreshTime = context.get(\"dne_tokenRefreshTime\") || 0;",
+          "console.log(\"token refresh time: \" + tokenRefreshTime);",
+          "",
+          "const tokenAge = Math.round((((Date.now() - tokenRefreshTime) % 86400000) % 3600000) / 60000);",
+          " ",
+          "if (tokenAge < 18) {",
+          "    console.log(\"token valid\");",
+          "} else {",
+          "    console.log(\"refreshing token...\");",
+          "    context.set(\"dne_tokenRefreshTime\", Date.now());",
+          " ",
+          "    const authRequest = {",
+          "        url: 'https://' + context.get(\"et_subdomain\") + '.auth.marketingcloudapis.com/v2/token',",
+          "        method: 'POST',",
+          "        header: 'Content-Type:application/json',",
+          "        body: JSON.stringify({",
+          "            \"grant_type\": \"client_credentials\",",
+          "            \"client_id\": context.get(\"et_clientId\"),",
+          "            \"client_secret\": context.get(\"et_clientSecret\"),",
+          "            \"account_id\": context.get(\"et_mid\")",
+          "        })",
+          "    };",
+          " ",
+          "    pm.sendRequest(authRequest, (err, res) => {",
+          "        console.log(err ? err : res.json());",
+          "        if (err === null) {",
+          "            const responseJson = res.json();",
+          "            context.set('dne_etAccessToken', responseJson.access_token);",
+          "            console.log(\"Success: token refresh\");",
+          "        } else {",
+          "            console.error(\"Failed: token refresh\");",
+          "        }",
+          "    });",
+          "}",
+          "/* End Token Refresh Logic */",
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "1763b7a7-3757-46d8-97ec-daa5e401fc71",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "120b54a9-7895-4eb8-a060-51dd86e88af7",
+      "key": "et_subdomain",
+      "value": "mchl2n7gw73h4822jd4c7f087fpy",
+      "type": "string"
+    },
+    {
+      "id": "97ff4d6d-d844-43b0-bc5f-04cee38b4978",
+      "key": "et_clientId",
+      "value": "cj7b41hju4a797qfzsrxapsj",
+      "type": "string"
+    },
+    {
+      "id": "88f1467a-7874-4074-ab48-6f5e25b50c8e",
+      "key": "et_clientSecret",
+      "value": "oZ3l8KgJvEH2PpBa7hzrembV",
+      "type": "string"
+    },
+    {
+      "id": "804c70a9-0d42-4e73-8e77-ddd8debc1e2f",
+      "key": "et_mid",
+      "value": "6194782",
+      "type": "string"
+    },
+    {
+      "id": "22f1f853-8f5f-4b39-a059-13dc7a697b36",
+      "key": "dne_tokenRefreshTime",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "a81682b8-5c1a-4469-a7d0-7b1443cc81b4",
+      "key": "dne_etAccessToken",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
