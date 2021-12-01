@@ -264,49 +264,6 @@
       "response": []
     },
     {
-      "name": "FirstDraft_Airship_POST /custom-events Copy",
-      "id": "a656df47-8df8-48c8-9144-f5fda13bed11",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Accept",
-            "value": "application/vnd.urbanairship+json; version=3",
-            "type": "text"
-          },
-          {
-            "key": "Authorization",
-            "value": "Bearer MTo5eFgwQ2JpZFQ4R1hVUjdSWjIyQjNBOkpsbUNYNVJEcHl4R2NxRFdIYVhrNzZGaVk4VldDQmYzUGIybnZOY1M0Y2s",
-            "type": "text"
-          },
-          {
-            "key": "X-UA-Appkey",
-            "value": "9xX0CbidT8GXUR7RZ22B3A",
-            "type": "text"
-          },
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "[\r\n  {\r\n    \"user\": {\r\n      \"named_user_id\": \"107551239\"\r\n    },\r\n    \"body\": {\r\n      \"name\": \"pega_marketing_generic_event\",\r\n      \"properties\": {\r\n        \"message-body\": \"Starting today you again have access to all your favorite in-club amenities\",\r\n        \"cta-weblink\": \"https://my.lifetime.life/clubs.go/features.html\"\r\n      }\r\n    }\r\n  }\r\n]",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": "https://go.urbanairship.com/api/custom-events"
-      },
-      "response": []
-    },
-    {
       "name": "FirstDraft_REST_Query",
       "id": "9544c8eb-f2e5-4bb2-9865-3954d02fe3ce",
       "protocolProfileBehavior": {
@@ -616,32 +573,32 @@
   ],
   "variable": [
     {
-      "id": "b9bf8ed3-9fef-42f1-aade-84ea0be272ab",
+      "id": "baaf767f-3a40-4db8-af0b-c48575ddd3f8",
       "key": "et_subdomain",
       "value": "mchl2n7gw73h4822jd4c7f087fpy"
     },
     {
-      "id": "2fdee39a-337f-4104-9bdd-70ba07da5479",
+      "id": "659d0a49-2cfb-4fac-b7e4-f2ef8281fbf9",
       "key": "et_clientId",
       "value": "cj7b41hju4a797qfzsrxapsj"
     },
     {
-      "id": "86bef8c6-9327-4a43-a8b5-b563378fbf5a",
+      "id": "15161fd3-fdef-4fa8-9d09-b2571c947e42",
       "key": "et_clientSecret",
       "value": "oZ3l8KgJvEH2PpBa7hzrembV"
     },
     {
-      "id": "4b50e2b1-86ab-4b43-8893-58c8672517d0",
+      "id": "3243d68a-cc4a-48be-96f8-af45a5fc9ac8",
       "key": "et_mid",
       "value": "6194782"
     },
     {
-      "id": "d8d4e1c7-2c0e-42c4-aa96-194d41044719",
+      "id": "c2a56982-062c-403a-b3b8-becaa803fab9",
       "key": "dne_tokenRefreshTime",
       "value": ""
     },
     {
-      "id": "a65d9e7e-92f8-4f4a-a703-8eb6c407101d",
+      "id": "e587b49a-df52-4527-a271-8d2bf0e4742e",
       "key": "dne_etAccessToken",
       "value": ""
     }
